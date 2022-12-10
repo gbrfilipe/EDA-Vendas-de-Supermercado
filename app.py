@@ -3,6 +3,7 @@ from funcoes import tratar_dataset
 from funcoes import importar_foto_perfil
 from funcoes import descrever_dados
 
+# Variáveis de execução
 headers = ["ID", "filial", "cidade", "tipo_cliente", "genero", "linha_de_produto", "preco_unitario", "quantidade", "taxa_5%", "total", "data", "hora", "forma_pagamento", "custo_produtos", "porcentagem_margem_bruta", "renda_bruta", "avaliacao"]
 
 df = tratar_dataset('supermarket_sales.csv', headers)
@@ -12,12 +13,12 @@ foto_elizabeth = importar_foto_perfil('fotos/elizabeth.jpg')
 foto_elton = importar_foto_perfil('fotos/elton.jpg')
 foto_gabriel = importar_foto_perfil('fotos/gabriel.jpg')
 
-# # Cabeçalho do projeto
-#             ![Enzo](https://avatars.githubusercontent.com/u/90116258?v=4)
-#             ![Elizabeth](https://avatars.githubusercontent.com/u/76952671?v=4)
-#             ![Elizabeth](https://avatars.githubusercontent.com/u/52720089?v=4)
-#             ![Gabriel](https://avatars.githubusercontent.com/u/48440319?v=4)
+# Sidebar
+with st.sidebar:
+    st.multiselect('Selecione um filtro:',
+                   df.columns[1:6])
 
+# Cabeçalho do projeto
 st.markdown('''
             # Análise de vendas de supermercado
             Uma análise exploratória dos dados de vendas de uma rede de supermercados para conclusão do modulo Técnicas de Programação 2 do curso de Python e Dados - ADA
@@ -38,5 +39,23 @@ st.markdown('''
             O objetivo deste projeto é trasnformar os dados de três supermercados e informações úteis para ter uma rápida análise dos seguintes fatores:
             ''')
 
+# Descrição do projeto colapsada (expander)
 with st.expander('**Descrição da base de dados**'):
     st.dataframe(descrever_dados(df))
+    st.write('**Colunas do dataset:**')
+    st.dataframe(df.columns)
+
+# Análises Univariadas
+st.markdown('''
+            # Análises Univariadas
+            ''')
+
+# Análises Bivariadas
+st.markdown('''
+            # Análises Bivariadas
+            ''')
+
+# Análises Multivariadas
+st.markdown('''
+            # Análises Multivariadas
+            ''')
